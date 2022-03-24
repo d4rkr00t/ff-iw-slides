@@ -184,17 +184,14 @@ export function Dull() {
 
 This is how we would test it with and without feature flags?
 
-```tsx {all|5|7|8|12-17|19|all}
-import React from 'react';
-import { mount } from 'enzyme';
-import { Dull } from '../../../dull';
-
-withFeatureFlag('editor.feature.dull').describe('Dull Feature', () => {
-  it('should be dull', () => {
-    const hello = mount(<Dull />);
-    expect(hello.html()).toBe('<div>Dull!</div>');
+```tsx {all|1|4|5|9-14|16|all}
+withFeatureFlag('editor.feature.dull')
+  .describe('Dull Feature', () => {
+    it('should be dull', () => {
+      const hello = mount(<Dull />);
+      expect(hello.html()).toBe('<div>Dull!</div>');
+    });
   });
-});
 
 describe('Dull Feature w/o ff', () => {
   it('should not be dull', () => {
@@ -203,7 +200,8 @@ describe('Dull Feature w/o ff', () => {
   });
 });
 
-withFeatureFlag({ key: 'editor.feature.dull', name: 'Dull Feature'}, false,).describe('Dull Feature', () => {
+withFeatureFlag({ key: 'editor.feature.dull', name: 'Dull Feature'}, false,)
+  .describe('Dull Feature', () => {
     it('should not be dull', () => {
       const hello = mount(<Dull />);
       expect(hello.html()).toBe('<div>Not Dull!</div>');
