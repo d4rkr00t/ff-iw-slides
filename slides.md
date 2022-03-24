@@ -88,7 +88,7 @@ One of the main requirements was that featrure flags utils must be well typed. T
 
 ```ts
 export const featureFlagConfig: FeatureFlagConfig = {
-  name: {
+  **name**: {
     type: 'string',
     default: 'default',
   },
@@ -217,6 +217,14 @@ withFeatureFlag({ key: 'editor.feature.dull', name: 'Dull Feature'}, false,)
 Now we can run the test:
 
 <video src="/assets/testing2.mp4" autoplay />
+
+---
+
+# Run All Tests With A Feature Flag
+
+Now we can pass `--with-ff="<feature-flag>"` to `yarn test` to run all tests with a feature flag:
+
+<video src="/assets/testing3.mp4" autoplay />
 
 ---
 
